@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Digital Guardians"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="30dp" />
+
+    <Button
+        android:id="@+id/btnManualCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manually Check SMS/URL"
+        android:padding="16dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@color/white" />
+
+    <!-- ✅ New Button for Manual Call Number Check -->
+    <Button
+        android:id="@+id/btnManualCallCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manually Check Call Number"
+        android:padding="16dp"
+        android:backgroundTint="@color/teal_700"
+        android:textColor="@color/white" />
+</LinearLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Digital Guardians"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="30dp" />
+
+    <Button
+        android:id="@+id/btnManualCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manually Check SMS/URL"
+        android:padding="16dp"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@color/white" />
+</LinearLayout>-->
