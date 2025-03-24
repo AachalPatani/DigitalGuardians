@@ -2,6 +2,7 @@ package com.example.digitalguardians;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -23,41 +24,105 @@ public class ApiService {
 
     // Function to show Alert Dialog for high risk
     private static void showAlert(Context context, String title, String message) {
-        new AlertDialog.Builder(context)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
-                .setCancelable(true)
-                .show();
+        new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
+            new AlertDialog.Builder(context)
+                    .setTitle(title)
+                    .setMessage(message)
+                    .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                    .setCancelable(true)
+                    .show();
+        });
     }
 
+
     // ✅ Handle response parsing and actions
+    // ✅ Dynamic Response Handling
     private static void handleResponse(Context context, String prediction, String confidence, String source) {
         try {
-            double confidenceValue = Double.parseDouble(confidence.replace("%", "").trim());  // convert string to double
+            if (confidence == null || confidence.isEmpty()) {
+                confidence = "0";  // Default to 0 if empty
+            }
 
-            if (prediction.equalsIgnoreCase("fraud") || prediction.equalsIgnoreCase("spam")) {
+            try {
+                String confidenceStr = confidence.replace("%", "").trim(); // Remove %
+                double confidenceValue = Double.parseDouble(confidenceStr); // Convert safely
+                Log.d("CONFIDENCE_SCORE", "Prediction: " + prediction + ", Confidence: " + confidenceValue);
+
+                // Alert with confidence score
+                showAlert(context, "🔍 Message Analysis",
+                        "📩 Source: " + source + "\n" +
+                                "📝 Prediction: " + prediction + "\n" +
+                                "📊 Confidence: " + confidenceValue + "%");
+
+                // Categorized alerts
                 if (confidenceValue >= 80.0) {
-                    showAlert(context, "⚠️ FRAUD/SPAM DETECTED",
-                            "High Risk Detected from " + source + "\nConfidence: " + confidence);
-                } else if (confidenceValue >= 50.0) {
-                    Toast.makeText(context, "⚠️ Moderate Risk of Fraud/Spam (Confidence: " + confidence + ")", Toast.LENGTH_LONG).show();
+                    showAlert(context, "⚠️ HIGH RISK DETECTED",
+                            "🚨 This message from " + source + " is likely dangerous!\nConfidence: " + confidenceValue + "%");
+                } else if (confidenceValue >= 60.0) {
+                    showAlert(context, "⚠️ MODERATE RISK",
+                            "⚠️ This content might be unsafe.\nConfidence: " + confidenceValue + "%");
+                } else if (confidenceValue >= 40.0) {
+                    showAlert(context, "⚠️ LOW RISK",
+                            "⚠️ Might be slightly suspicious. Stay cautious.\nConfidence: " + confidenceValue + "%");
                 } else {
-                    Toast.makeText(context, "Seems Safe! (Confidence: " + confidence + ")", Toast.LENGTH_SHORT).show();
+                    showAlert(context, "✅ SAFE MESSAGE", "This message appears safe.\nConfidence: " + confidenceValue + "%");
                 }
-            } else {
-                Toast.makeText(context, "✅ Safe Content", Toast.LENGTH_SHORT).show();
+            } catch (NumberFormatException e) {
+                Log.e("CONFIDENCE_ERROR", "Error parsing confidence: " + e.getMessage());
+                Toast.makeText(context, "Error parsing confidence score", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(context, "Error parsing confidence score.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Unexpected error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
+    // ✅ Handle URL API response dynamically
+    private static void handleUrlResponse(Context context, String prediction, String confidence, String url) {
+        try {
+            if (confidence == null || confidence.isEmpty()) {
+                confidence = "0";  // Default to 0 if empty
+            }
+
+            try {
+                String confidenceStr = confidence.replace("%", "").trim(); // Remove %
+                double confidenceValue = Double.parseDouble(confidenceStr); // Convert safely
+                Log.d("CONFIDENCE_SCORE", "Prediction: " + prediction + ", Confidence: " + confidenceValue);
+
+                if (prediction.equalsIgnoreCase("fraud")) {
+                    if (confidenceValue >= 80.0) {
+                        showAlert(context, "⚠️ HIGH RISK URL",
+                                "🚨 This URL may be dangerous!\nConfidence: " + confidenceValue + "%");
+                    } else if (confidenceValue >= 50.0) {
+                        showAlert(context, "⚠️ MODERATE RISK URL",
+                                "⚠️ Be cautious! This URL might not be safe.\nConfidence: " + confidenceValue + "%");
+                    } else {
+                        showAlert(context, "⚠️ LOW RISK URL",
+                                "⚠️ Might be slightly suspicious. Proceed with caution.\nConfidence: " + confidenceValue + "%");
+                    }
+                } else {
+                    showAlert(context, "✅ SAFE URL", "This URL appears safe.\nConfidence: " + confidenceValue + "%");
+                }
+            } catch (NumberFormatException e) {
+                Log.e("CONFIDENCE_ERROR", "Error parsing confidence: " + e.getMessage());
+                Toast.makeText(context, "Error parsing confidence score", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Unexpected error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
 
     // ✅ API call for SMS detection
     public static void sendSmsToBackend(Context context, String message, String sender) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.107:5000/")  // SMS API Server
+                .baseUrl("http://192.168.1.102:5000/")  // SMS API Server
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -78,11 +143,16 @@ public class ApiService {
                 if (response.isSuccessful() && response.body() != null) {
                     try {
                         String responseBody = response.body().string();
-                        JSONObject jsonResponse = new JSONObject(responseBody);
-                        String prediction = jsonResponse.getString("prediction");
-                        String confidence = jsonResponse.getString("confidence");
+                        Log.d("API_RESPONSE", "Raw Response: " + responseBody); // 🔍 Debug log
 
-                        // ✅ Handle action based on response
+                        JSONObject jsonResponse = new JSONObject(responseBody);
+                        String prediction = jsonResponse.optString("prediction", "Not Spam");  // Default to "Not Spam"
+                        String confidence = jsonResponse.optString("confidence", "0%");
+
+                        // ✅ Debugging: Log API response to check if it's always "fraud"
+                        Log.d("API_RESPONSE", "Prediction: " + prediction + ", Confidence: " + confidence);
+
+                        // ✅ Handle response
                         handleResponse(context, prediction, confidence, "SMS from " + sender);
 
                     } catch (Exception e) {
@@ -94,6 +164,7 @@ public class ApiService {
                 }
             }
 
+
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(context, "SMS API Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -102,9 +173,10 @@ public class ApiService {
     }
 
     // ✅ API call for URL detection
+    // ✅ API call for URL detection
     public static void sendUrlToBackend(Context context, String url) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.107:5001/")  // URL API Server
+                .baseUrl("http://192.168.1.102:5001/")  // Adjust URL API Server if needed
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -129,8 +201,8 @@ public class ApiService {
                         String prediction = jsonResponse.getString("prediction");
                         String confidence = jsonResponse.getString("confidence");
 
-                        // ✅ Handle action based on response
-                        handleResponse(context, prediction, confidence, "URL: " + url);
+                        // ✅ Handle the response dynamically
+                        handleUrlResponse(context, prediction, confidence, url);
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -147,4 +219,5 @@ public class ApiService {
             }
         });
     }
+
 }

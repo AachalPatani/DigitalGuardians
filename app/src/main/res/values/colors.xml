@@ -1,10 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#BB86FC</color>
-    <color name="purple_500">#6200EE</color>
-    <color name="purple_700">#3700B3</color>
-    <color name="teal_200">#03DAC5</color>
-    <color name="teal_700">#018786</color> <!-- ✅ Add this color -->
+    <!-- Existing colors -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="gray">#BDBDBD</color> <!-- Optional, if used for hint -->
+    <color name="light_gray">#F5F5F5</color>
+    <color name="primary_blue">#1565C0</color>
+    <color name="accent_green">#4CAF50</color>
+
+    <!-- ✅ Add these card colors for alternate effects -->
+    <color name="cardColor1">#FFFFFF</color> <!-- White -->
+    <color name="cardColor2">#ECECEC</color> <!-- Light Gray -->
 </resources>

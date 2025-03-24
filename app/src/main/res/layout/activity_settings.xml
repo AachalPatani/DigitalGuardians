@@ -6,25 +6,23 @@
     android:padding="24dp"
     android:gravity="center">
 
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Check"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
-
-    <EditText
-        android:id="@+id/inputText"
+    <Button
+        android:id="@+id/btnFaq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter content here" />
+        android:text="FAQs"
+        android:layout_marginBottom="12dp"/>
 
     <Button
-        android:id="@+id/btnCheck"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnVoiceAssist"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Check Now"
-        android:layout_marginTop="16dp" />
+        android:text="Voice Assistance"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Manage Notifications"/>
 </LinearLayout>

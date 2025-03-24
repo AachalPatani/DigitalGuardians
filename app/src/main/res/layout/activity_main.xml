@@ -1,66 +1,465 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="@color/white">
+    android:fillViewport="true"
+    android:background="#DAE4E9">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to Digital Guardians"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginBottom="30dp" />
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
 
-    <Button
-        android:id="@+id/btnManualCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Manually Check SMS/URL"
-        android:padding="16dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/purple_500"
-        android:textColor="@color/white" />
+        <!-- Header Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="24dp"
+            android:paddingBottom="16dp"
+            android:background="#3F51B5">
 
-    <!-- ✅ New Button for Manual Call Number Check -->
-    <Button
-        android:id="@+id/btnManualCallCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Manually Check Call Number"
-        android:padding="16dp"
-        android:backgroundTint="@color/teal_700"
-        android:textColor="@color/white" />
-</LinearLayout>
+            <!-- Logo with circular background -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:cardCornerRadius="50dp"
+                app:cardElevation="8dp"
+                android:background="#FFFFFF">
 
-<!--<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="@color/white">
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="App Logo"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cyber_security_bg" />
+            </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to Digital Guardians"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginBottom="30dp" />
+            <!-- App Title -->
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="DigitalGuardians"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/btnManualCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Manually Check SMS/URL"
-        android:padding="16dp"
-        android:backgroundTint="@color/purple_500"
-        android:textColor="@color/white" />
-</LinearLayout>-->
+            <!-- Tagline -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Your Shield Against Digital Threats"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <!-- Main Features Grid -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="Main Features"
+            android:textColor="#303F9F"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:columnCount="2"
+            android:paddingHorizontal="16dp"
+            android:rowCount="3">
+
+            <!-- Message Check -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/yoga_practice"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:layout_rowWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:background="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/sms_secure"/>
+<!--                        android:tint="#3F51B5"-->
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Message Check"
+                        android:textAlignment="center"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Scan suspicious SMS"
+                        android:textAlignment="center"
+                        android:textColor="#757575"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- URL Check -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/url_check"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:layout_rowWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:background="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/url_security"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="URL Check"
+                        android:textAlignment="center"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Verify website safety"
+                        android:textAlignment="center"
+                        android:textColor="#757575"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Call Check -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/call_check"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:layout_rowWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:background="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/call_secure"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Call Check"
+                        android:textAlignment="center"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Identify scam calls"
+                        android:textAlignment="center"
+                        android:textColor="#757575"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Bank Safety Tips -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bank_tips"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:layout_rowWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:background="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/bank_secure"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Bank Safety"
+                        android:textAlignment="center"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Financial protection tips"
+                        android:textAlignment="center"
+                        android:textColor="#757575"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- News Scanner -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/news_scanner"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:layout_rowWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:background="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/news"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="News Scanner"
+                        android:textAlignment="center"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Latest security alerts"
+                        android:textAlignment="center"
+                        android:textColor="#757575"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Settings -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/settings"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:layout_rowWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:background="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/settings_voice"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Settings"
+                        android:textAlignment="center"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Configure your security"
+                        android:textAlignment="center"
+                        android:textColor="#757575"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </GridLayout>
+
+        <!-- Quick Actions Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="Quick Actions"
+            android:textColor="#303F9F"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical">
+
+            <!-- Report Fraud Button -->
+
+            <!-- Chatbot Button -->
+            <Button
+                android:id="@+id/btnReportFraud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#FFFFFF"
+                android:drawableLeft="@drawable/report_fraud"
+                android:text="Report Fraud"
+                android:textAllCaps="false"
+                android:textColor="#3F51B5"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnBankChatBot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
+                android:text="Chat with GuardianBot"
+                android:textColor="#3F51B5"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:drawableLeft="@drawable/chatbot"
+                />
+        </LinearLayout>
+
+        <!-- Security Tip of the Day -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:background="#C5CAE9">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Security Tip of the Day"
+                    android:textColor="#303F9F"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/securityTipText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Never share your OTP or banking passwords with anyone, even if they claim to be from your bank."
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:text="More Tips"
+                    android:textColor="#303F9F"
+                    android:background="@null"
+                    android:textAllCaps="false"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Footer Quote -->
+        <TextView
+            android:id="@+id/motivationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:gravity="center"
+            android:text="Stay Safe from Scams with DigitalGuardians"
+            android:textColor="#3F51B5"
+            android:textSize="18sp"
+            android:textStyle="italic"/>
+    </LinearLayout>
+</ScrollView>

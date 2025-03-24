@@ -12,6 +12,8 @@ import android.telephony.SmsMessage;
 public class SmsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+        Context appContext = context.getApplicationContext(); // ✅ Use application-level context
+
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
             Object[] pdus = (Object[]) bundle.get("pdus");
@@ -23,13 +25,12 @@ public class SmsReceiver extends BroadcastReceiver {
                 // Extract URL if present in SMS
                 String url = Utils.extractUrl(smsBody);
 
-                // ✅ Call URL fraud detection API if URL is present
                 if (!url.isEmpty()) {
-                    ApiService.sendUrlToBackend(context, url);
+                    ApiService.sendUrlToBackend(appContext, url);
                 }
 
-                // ✅ Also check if SMS itself is spam
-                ApiService.sendSmsToBackend(context, smsBody, sender);
+                // ✅ Send SMS for checking
+                ApiService.sendSmsToBackend(appContext, smsBody, sender);
             }
         }
     }
