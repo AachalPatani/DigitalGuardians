@@ -32,7 +32,6 @@ public class OTPReceiver extends BroadcastReceiver {
                         String messageBody = smsMessage.getMessageBody();
                         Log.d("OTPReceiver", "Received SMS: " + messageBody);
 
-                        // **New regex to extract 6-digit OTP from any message**
                         Pattern pattern = Pattern.compile("\\b\\d{6}\\b");
                         Matcher matcher = pattern.matcher(messageBody);
 
@@ -53,8 +52,6 @@ public class OTPReceiver extends BroadcastReceiver {
             } else {
                 Log.d("OTPReceiver", "Bundle is null, no SMS data");
             }
-        } else {
-            Log.d("OTPReceiver", "Intent action didn't match");
         }
     }
 

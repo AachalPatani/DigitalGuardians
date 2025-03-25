@@ -16,28 +16,38 @@ public class SecureOTPHandler {
     private static final String KEY_ALIAS = "otp_encryption_key";
     private static final String ANDROID_KEYSTORE = "AndroidKeyStore";
     private static Handler autoDeleteHandler = new Handler();
-    private static final AtomicReference<String> encryptedOTP = new AtomicReference<>(null); // ✅ Fix applied
+    private static final AtomicReference<String> encryptedOTP = new AtomicReference<>(null);
 
     public static void generateKey() throws Exception {
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEYSTORE);
         keyStore.load(null);
 
         if (!keyStore.containsAlias(KEY_ALIAS)) {
+            Log.d("SecureOTPHandler", "Generating new encryption key...");
             KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEYSTORE);
             keyGenerator.init(new KeyGenParameterSpec.Builder(KEY_ALIAS,
                     KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
                     .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
                     .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
-                    .setUserAuthenticationRequired(true) // Requires TEE-based authentication
+                    .setUserAuthenticationRequired(false)  // ✅ Disabled authentication for debugging
                     .build());
             keyGenerator.generateKey();
+            Log.d("SecureOTPHandler", "Encryption key generated successfully.");
+        } else {
+            Log.d("SecureOTPHandler", "Encryption key already exists.");
         }
     }
 
     public static String encryptOTP(String otp) throws Exception {
+        generateKey(); // Ensure key exists before encryption
+
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEYSTORE);
         keyStore.load(null);
         SecretKey secretKey = (SecretKey) keyStore.getKey(KEY_ALIAS, null);
+
+        if (secretKey == null) {
+            throw new Exception("Encryption key not found in Keystore!");
+        }
 
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
@@ -45,10 +55,16 @@ public class SecureOTPHandler {
         byte[] encryptedData = cipher.doFinal(otp.getBytes());
 
         String encryptedString = Base64.encodeToString(iv, Base64.DEFAULT) + ":" + Base64.encodeToString(encryptedData, Base64.DEFAULT);
-        encryptedOTP.set(encryptedString); // ✅ Store in AtomicReference
+        encryptedOTP.set(encryptedString);
 
-        // **Auto-delete OTP after 30 seconds**
-        autoDeleteHandler.postDelayed(() -> encryptedOTP.set(null), 30000); // ✅ Fix: Using AtomicReference
+        Log.d("SecureOTPHandler", "Encrypted OTP: " + encryptedString);
+        Log.d("SecureOTPHandler", "IV Used: " + Base64.encodeToString(iv, Base64.DEFAULT));
+
+        // Auto-delete OTP after 30 seconds
+        autoDeleteHandler.postDelayed(() -> {
+            encryptedOTP.set(null);
+            Log.d("SecureOTPHandler", "Encrypted OTP auto-deleted.");
+        }, 30000);
 
         return encryptedString;
     }
@@ -62,16 +78,22 @@ public class SecureOTPHandler {
         byte[] iv = Base64.decode(parts[0], Base64.DEFAULT);
         byte[] encryptedData = Base64.decode(parts[1], Base64.DEFAULT);
 
+        Log.d("SecureOTPHandler", "IV for decryption: " + Base64.encodeToString(iv, Base64.DEFAULT));
+
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEYSTORE);
         keyStore.load(null);
         SecretKey secretKey = (SecretKey) keyStore.getKey(KEY_ALIAS, null);
+
+        if (secretKey == null) {
+            throw new Exception("Decryption key not found in Keystore!");
+        }
 
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
         cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(iv));
 
         String decryptedOTP = new String(cipher.doFinal(encryptedData));
         Log.d("SecureOTPHandler", "Decrypted OTP: " + decryptedOTP);
+
         return decryptedOTP;
     }
-
 }

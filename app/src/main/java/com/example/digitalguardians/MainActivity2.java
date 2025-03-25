@@ -26,6 +26,7 @@ public class MainActivity2 extends AppCompatActivity implements OTPReceiver.OTPL
         decryptOtpButton.setOnClickListener(v -> {
             if (encryptedOTP == null || encryptedOTP.isEmpty()) {
                 Toast.makeText(this, "No OTP to decrypt!", Toast.LENGTH_SHORT).show();
+                Log.e("MainActivity2", "Decryption failed: No OTP found!");
                 return;
             }
 
@@ -34,7 +35,7 @@ public class MainActivity2 extends AppCompatActivity implements OTPReceiver.OTPL
                 Log.d("MainActivity2", "Decrypted OTP: " + decryptedOTP);
                 statusText.setText("Decrypted OTP: " + decryptedOTP);
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("MainActivity2", "Decryption failed!", e);
                 Toast.makeText(this, "Decryption failed!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -46,9 +47,10 @@ public class MainActivity2 extends AppCompatActivity implements OTPReceiver.OTPL
             otpText.setText("Received OTP: " + otp);
             try {
                 encryptedOTP = SecureOTPHandler.encryptOTP(otp);
+                Log.d("MainActivity2", "Encrypted OTP: " + encryptedOTP);
                 statusText.setText("Encrypted OTP: " + encryptedOTP);
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("MainActivity2", "Encryption failed!", e);
                 Toast.makeText(MainActivity2.this, "Encryption failed!", Toast.LENGTH_SHORT).show();
             }
         });
