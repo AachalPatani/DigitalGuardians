@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1019378198850",
+    "project_id": "digitalguardians-e9179",
+    "storage_bucket": "digitalguardians-e9179.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019378198850:android:20a96f56e09b27c94200db",
+        "android_client_info": {
+          "package_name": "com.example.digitalguardians"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBog0NjztzLTBWR5xOoe6NmQZPZg6S1sRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

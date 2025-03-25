@@ -4,4 +4,16 @@
     <item name="facebookButton" type="id" />
     <item name="email" type="id" />
     <item name="password" type="id" />
+    <item name="btnBankChatBot" type="id" />
+    <item name="yoga_practice" type="id" />
+    <item name="logo" type="id" />
+    <item name="url_check" type="id" />
+    <item name="call_check" type="id" />
+    <item name="bank_tips" type="id" />
+    <item name="news_scanner" type="id" />
+    <item name="settings" type="id" />
+    <item name="btnReportFraud" type="id" />
+    <item name="securityTipText" type="id" />
+    <item name="moretips" type="id" />
+    <item name="motivationText" type="id" />
 </resources>

@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     // CardView references for the new UI elements
     private CardView cardMessageCheck, cardUrlCheck, cardCallCheck, cardBankTips, cardNewsScanner, cardSettings;
-    private Button btnReportFraud, btnChatbot;
+    private Button btnReportFraud, btnChatbot,moretips;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         // Buttons from the bottom section
         btnReportFraud = findViewById(R.id.btnReportFraud);
         btnChatbot = findViewById(R.id.btnBankChatBot);
+        moretips=findViewById(R.id.moretips);
 
         // Set click listeners for all cards
         cardMessageCheck.setOnClickListener(v -> openManualCheck("sms"));
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         // Set click listeners for buttons
         btnReportFraud.setOnClickListener(v -> startActivity(new Intent(this, ReportFraudActivity.class)));
         btnChatbot.setOnClickListener(v -> startActivity(new Intent(this, ChatActivity.class)));
+        moretips.setOnClickListener(v -> startActivity(new Intent(this, MainActivity2.class)));
     }
 
     private void openManualCheck(String type) {

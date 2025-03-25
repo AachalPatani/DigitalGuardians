@@ -4,18 +4,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_bg"
+    android:background="@drawable/img"
     android:gravity="center">
 
     <TextView
         android:id="@+id/splashText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DIGITAL GUARDIANS"
-        android:textColor="@android:color/white"
-        android:textSize="36sp"
-        android:textStyle="bold"
         android:fontFamily="sans-serif-medium"
-        android:layout_centerInParent="true" />
+        android:text="DIGITAL
+        GUARDIANS"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 </RelativeLayout>
 

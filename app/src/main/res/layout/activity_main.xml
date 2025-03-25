@@ -102,8 +102,8 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:src="@drawable/sms_secure"/>
-<!--                        android:tint="#3F51B5"-->
-                        />
+                    <!--                        android:tint="#3F51B5"-->
+                    />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -376,33 +376,47 @@
             android:orientation="vertical">
 
             <!-- Report Fraud Button -->
-
-            <!-- Chatbot Button -->
             <Button
                 android:id="@+id/btnReportFraud"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="#FFFFFF"
-                android:drawableLeft="@drawable/report_fraud"
+                android:drawableStart="@drawable/bank_secure"
+                android:drawablePadding="8dp"
                 android:text="Report Fraud"
                 android:textAllCaps="false"
                 android:textColor="#3F51B5"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
+            <!-- Chatbot Button -->
             <Button
                 android:id="@+id/btnBankChatBot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFFFFF"
+                android:drawableStart="@drawable/chatbot"
+                android:drawablePadding="8dp"
                 android:text="Chat with GuardianBot"
                 android:textColor="#3F51B5"
                 android:textAllCaps="false"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:drawableLeft="@drawable/chatbot"
-                />
+                android:textStyle="bold" />
+
+            <!-- sim check -->
+            <Button
+                android:id="@+id/checkSimButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
+                android:drawableStart="@drawable/chatbot"
+                android:drawablePadding="8dp"
+                android:text="Check Sim"
+                android:textColor="#3F51B5"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <!-- Security Tip of the Day -->
@@ -439,6 +453,7 @@
                     android:lineSpacingExtra="4dp"/>
 
                 <Button
+                    android:id="@+id/moretips"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
