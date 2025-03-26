@@ -1,47 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#121C2B">
 
-    <TextView
-        android:id="@+id/chatView"
+    <!-- Chat Display Area -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/darker_gray"
-        android:padding="10dp"
-        android:text="ChatBot Ready..."
-        android:textColor="@android:color/white"
-        android:textSize="16sp"/>
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#1E2A3D"
+        tools:ignore="ExtraText">
 
-    <EditText
-        android:id="@+id/userInput"
+        <TextView
+            android:id="@+id/chatView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:text="SecurityBot Ready...\n\nType your fraud prevention questions"
+            android:textColor="#4CAF50"
+            android:textSize="16sp"
+            android:fontFamily="monospace"
+            android:lineSpacingExtra="4dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Input Area -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Type your message..."
-        android:padding="8dp"/>
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp">
 
+        <EditText
+            android:id="@+id/userInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type your security question..."
+            android:padding="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#A0A0A0"
+            android:background="@null"
+            android:imeOptions="actionSend"
+            android:inputType="textCapSentences|textMultiLine"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Action Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:weightSum="2">
 
         <Button
             android:id="@+id/sendButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:text="Send"/>
+            android:layout_marginEnd="4dp"
+            android:text="Encrypt &amp; Send"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#3F51B5"
+            android:textAllCaps="false"
+            android:drawableStart="@drawable/bank_secure"
+            android:drawablePadding="8dp"
+            style="@style/Widget.AppCompat.Button.Colored"/>
 
         <Button
             android:id="@+id/voiceButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:text="🎤 Voice"/>
+            android:layout_marginStart="4dp"
+            android:text="Voice Auth"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF5722"
+            android:textAllCaps="false"
+            android:drawableStart="@drawable/settings_voice"
+            android:drawablePadding="8dp"
+            style="@style/Widget.AppCompat.Button.Colored"/>
     </LinearLayout>
-
 </LinearLayout>

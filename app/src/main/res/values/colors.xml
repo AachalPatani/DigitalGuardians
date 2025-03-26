@@ -7,6 +7,9 @@
     <color name="primary_blue">#1565C0</color>
     <color name="accent_green">#4CAF50</color>
 
+    <color name="light_blue_button">#BBDEFB</color>
+    <color name="dark_blue_text">#0D47A1</color>
+
     <!-- ✅ Add these card colors for alternate effects -->
     <color name="cardColor1">#FFFFFF</color> <!-- White -->
     <color name="cardColor2">#ECECEC</color> <!-- Light Gray -->

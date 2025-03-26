@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E8EAF6"
+    android:padding="16dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary_blue"
+        app:titleTextColor="@android:color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
+    <Button
+        android:id="@+id/btnFaq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="faqs" />
+
+    <Button
+        android:id="@+id/btnNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="manage_notifications" />
+    <Button
+        android:id="@+id/btnVoiceAssist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btnVoiceAssist" />
+
+
+
+    <Button
+        android:id="@+id/btnToggleLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginBottom="16dp"
+        android:text="Language Change" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/faqRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"/>
+
+</LinearLayout>

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">DIGITAL GUARDIANS</string>
     <string name="accessibility_service_description" />
+    <string name="manage_notifications" />
+    <string name="view_in_hindi" />
+    <string name="faqs" />
+    <string name="voice_assistance" />
+    <string name="banking_assistance" />
 </resources>

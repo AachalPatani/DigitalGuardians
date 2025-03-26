@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 public class MainActivity extends AppCompatActivity {
 
     // CardView references for the new UI elements
-    private CardView cardMessageCheck, cardUrlCheck, cardCallCheck, cardBankTips, cardNewsScanner, cardSettings;
+    private CardView cardMessageCheck, cardUrlCheck, cardCallCheck, cardBankTips, cardNewsScanner, cardSettings,chatbot_card,otp_encrypter;
     private Button btnReportFraud, btnChatbot, moretips, checkSimButton,simulateSimSwapButton,resetSimBtn ;
     private TextView statusText;
     private SIMSwapDetector simSwapDetector;
@@ -30,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
         cardBankTips = findViewById(R.id.bank_tips);
         cardNewsScanner = findViewById(R.id.news_scanner);
         cardSettings = findViewById(R.id.settings);
+        chatbot_card=findViewById(R.id.chatbot_card);
+        otp_encrypter=findViewById(R.id.otp_encrypter);
 
         // Buttons from the bottom section
         btnReportFraud = findViewById(R.id.btnReportFraud);
-        btnChatbot = findViewById(R.id.btnBankChatBot);
+        //btnChatbot = findViewById(R.id.btnBankChatBot);
         moretips = findViewById(R.id.moretips);
         checkSimButton = findViewById(R.id.checkSimButton);
         statusText = findViewById(R.id.statusText);
@@ -50,19 +52,22 @@ public class MainActivity extends AppCompatActivity {
         simSwapDetector = new SIMSwapDetector(this);
 
         // Set click listeners for all cards
+
         cardMessageCheck.setOnClickListener(v -> openManualCheck("sms"));
         cardUrlCheck.setOnClickListener(v -> openManualCheck("url"));
         //cardCallCheck.setOnClickListener(v -> openManualCheck("call"));
         cardCallCheck.setOnClickListener(v -> startActivity(new Intent(this, MainActivity3.class)));
         cardBankTips.setOnClickListener(v -> startActivity(new Intent(this, BankTipsActivity.class)));
         cardNewsScanner.setOnClickListener(v -> startActivity(new Intent(this, NewsListActivity.class)));
-        cardSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
+        cardSettings.setOnClickListener(v -> startActivity(new Intent(this, BankingAssistanceActivity.class)));
+        otp_encrypter.setOnClickListener(v -> startActivity(new Intent(this, MainActivity2.class)));
+        chatbot_card.setOnClickListener(v -> startActivity(new Intent(this, ChatActivity.class)));
 
         // Set click listeners for buttons
         resetSimBtn = findViewById(R.id.resetSimBtn);
         btnReportFraud.setOnClickListener(v -> startActivity(new Intent(this, ReportFraudActivity.class)));
-        btnChatbot.setOnClickListener(v -> startActivity(new Intent(this, ChatActivity.class)));
-        moretips.setOnClickListener(v -> startActivity(new Intent(this, MainActivity2.class)));
+        //btnChatbot.setOnClickListener(v -> startActivity(new Intent(this, ChatActivity.class)));
+        moretips.setOnClickListener(v -> startActivity(new Intent(this, BankingSecurityTipsActivity.class)));
 
         // Check SIM Button - Calls SIM Swap Detection
         checkSimButton.setOnClickListener(v -> {
