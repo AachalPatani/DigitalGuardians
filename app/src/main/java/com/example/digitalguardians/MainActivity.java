@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         // Set click listeners for all cards
         cardMessageCheck.setOnClickListener(v -> openManualCheck("sms"));
         cardUrlCheck.setOnClickListener(v -> openManualCheck("url"));
-        cardCallCheck.setOnClickListener(v -> openManualCheck("call"));
+        //cardCallCheck.setOnClickListener(v -> openManualCheck("call"));
+        cardCallCheck.setOnClickListener(v -> startActivity(new Intent(this, MainActivity3.class)));
         cardBankTips.setOnClickListener(v -> startActivity(new Intent(this, BankTipsActivity.class)));
         cardNewsScanner.setOnClickListener(v -> startActivity(new Intent(this, NewsListActivity.class)));
         cardSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));

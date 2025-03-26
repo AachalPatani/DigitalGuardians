@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DIGITAL GUARDIANS</string>
+    <string name="accessibility_service_description" />
 </resources>
