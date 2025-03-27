@@ -173,12 +173,13 @@ public class ChatActivity extends AppCompatActivity {
         responseMap.put("UPI fraud", "UPI fraud se bachne ke liye kisi ke saath PIN share na karein aur sirf trusted sources se payment karein.");
         responseMap.put("loan scam", "Agar aapko bina kisi application ke loan approval ka message aaye to yeh fraud ho sakta hai.");
         responseMap.put("investment scam", "Bahut zyada return ka wada karne wale investment schemes fraud ho sakti hain, hamesha SEBI registered companies ko hi trust karein.");
-        responseMap.put("SIM swap fraud", "Agar aapka SIM card band ho gaya hai aur bank se OTP nahi aa raha hai to turant network provider se sampark karein.");
+        responseMap.put("sim swap fraud", "SIM Swap Fraud ek tarah ka cyber fraud hai jisme fraudsters aapke mobile number ko control karne ke liye aapka SIM card duplicate ya transfer karwa lete hain,Agar aapka SIM card band ho gaya hai aur bank se OTP nahi aa raha hai to turant network provider se sampark karein.");
         responseMap.put("fake customer care", "Koi bhi customer care number Google se na dekhein, hamesha official website par jaakar check karein.");
         responseMap.put("QR code fraud", "Kisi anjaan QR code ko scan na karein, fraudsters aapke account se paisa nikal sakte hain.");
         responseMap.put("fake job scam", "Agar kisi job offer me pehle paisa maanga ja raha hai to yeh fraud ho sakta hai, hamesha verify karein.");
         responseMap.put("cyber police", "Cyber fraud report karne ke liye aap apne najdeeki cyber police station ya www.cybercrime.gov.in par complaint darj kar sakte hain.");
 
+        responseMap.put("cyber security", "Cybersecurity ek prakriya hai jo computers, networks, data aur systems ko cyber attacks se bachane ke liye istemal ki jati hai.");
         responseMap.put("cyber crime complaint", "Agar aap cybercrime ke shikar hue hain to www.cybercrime.gov.in par report karein ya 1930 par call karein.");
     }
 

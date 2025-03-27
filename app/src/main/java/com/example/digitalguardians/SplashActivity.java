@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final int SPLASH_SCREEN_TIME = 3000; // 3 seconds
+    private static final int SPLASH_SCREEN_TIME = 4000; // 3 seconds
     private Handler handler = new Handler();
 
     @Override

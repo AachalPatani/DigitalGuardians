@@ -97,6 +97,8 @@ public class SIMSwapDetector {
             Log.e("SIM Swap Alert", "❌ Possible SIM swap detected!");
             showNotification("⚠️ SIM Swap Alert!", "Your SIM has been changed. If this wasn't you, contact support immediately!");
             return "❌ Possible SIM Swap Detected!";
+
+
         } else {
             preferences.edit().putString(SIM_SERIAL_KEY, currentSimSerial).apply();
             return "✅ SIM Status: Up-to-Date";

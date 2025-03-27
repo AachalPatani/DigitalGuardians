@@ -122,7 +122,7 @@ public class ApiService {
     // ✅ API call for SMS detection
     public static void sendSmsToBackend(Context context, String message, String sender) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.101:5000/")  // SMS API Server
+                .baseUrl("http://192.168.200.30:5000/")  // SMS API Server
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -176,7 +176,7 @@ public class ApiService {
     // ✅ API call for URL detection
     public static void sendUrlToBackend(Context context, String url) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.101:5001/")  // Adjust URL API Server if needed
+                .baseUrl("http://192.168.200.30:5001/")  // Adjust URL API Server if needed
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
